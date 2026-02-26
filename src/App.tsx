@@ -1,10 +1,11 @@
 import Navigation from './sections/Navigation';
+import Donation from './sections/Donation';
 import Hero from './sections/Hero';
 import Features from './sections/Features';
 import HowItWorks from './sections/HowItWorks';
 import ContentShowcase from './sections/ContentShowcase';
 import Testimonials from './sections/Testimonials';
-import CTA from './sections/CTA';
+import DownloadApp from './sections/DownloadApp';
 import Footer from './sections/Footer';
 import { gradiant, gradiantRight } from './assets/media';
 
@@ -29,6 +30,9 @@ function App() {
 
       {/* Main Content */}
       <main className="relative z-10">
+        {/* Donation Section */}
+        <Donation />
+
         {/* Hero Section */}
         <Hero />
 
@@ -44,8 +48,8 @@ function App() {
         {/* Testimonials Section */}
         <Testimonials />
 
-        {/* CTA Section */}
-        <CTA />
+        {/* Download App Section */}
+        <DownloadApp />
       </main>
 
       {/* Footer */}
