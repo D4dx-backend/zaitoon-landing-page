@@ -1,20 +1,29 @@
 import { useEffect, useRef, useState } from 'react';
 import { FaChevronLeft, FaChevronRight, FaQuoteLeft, FaStar } from 'react-icons/fa';
-import { media3, media4, media5 } from '../assets/media';
 
 interface TestimonialProps {
   name: string;
   role: string;
   content: string;
   rating: number;
-  avatar: string;
   isActive: boolean;
 }
 
-const TestimonialCard = ({ name, role, content, rating, avatar, isActive }: TestimonialProps) => {
+const avatarColors = [
+  'from-purple-500 to-pink-500',
+  'from-blue-500 to-purple-500',
+  'from-pink-500 to-rose-500',
+  'from-indigo-500 to-blue-500',
+  'from-emerald-500 to-teal-500',
+];
+
+const TestimonialCard = ({ name, role, content, rating, isActive }: TestimonialProps) => {
+  const initial = name.charAt(0).toUpperCase();
+  const colorIndex = name.charCodeAt(0) % avatarColors.length;
+
   return (
     <div
-      className={`relative p-8 rounded-3xl bg-gradient-to-br from-purple-900/40 to-purple-800/20 border border-purple-500/20 backdrop-blur-sm transition-all duration-500 ${
+      className={`relative p-8 rounded-3xl bg-gradient-to-br from-purple-900/40 to-purple-800/20 border border-purple-500/20 backdrop-blur-sm transition-all duration-500 flex flex-col h-full ${
         isActive
           ? 'opacity-100 scale-100 shadow-xl shadow-purple-500/20'
           : 'opacity-50 scale-95'
@@ -38,12 +47,16 @@ const TestimonialCard = ({ name, role, content, rating, avatar, isActive }: Test
       </div>
 
       {/* Content */}
-      <p className="text-gray-300 leading-relaxed mb-8 text-lg">"{content}"</p>
+      <p className="text-gray-300 leading-relaxed mb-8 text-lg flex-1">"{content}"</p>
 
       {/* Author */}
       <div className="flex items-center gap-4">
-        <div className="w-14 h-14 rounded-xl overflow-hidden border-2 border-purple-500/30">
-          <img src={avatar} alt={name} className="w-full h-full object-cover" />
+        <div
+          className={`w-14 h-14 rounded-xl flex items-center justify-center bg-gradient-to-br ${avatarColors[colorIndex]} border-2 border-purple-500/30 shrink-0`}
+        >
+          <span className="text-white text-xl font-bold" style={{ fontFamily: 'Exo, sans-serif' }}>
+            {initial}
+          </span>
         </div>
         <div>
           <h4 className="text-white font-bold" style={{ fontFamily: 'Exo, sans-serif' }}>
@@ -94,7 +107,6 @@ const Testimonials = () => {
       content:
         'superb ❤️... this app is very useful for children.. they have the ability to read well😍.. the stories in this are very interesting, so children like it very so much ☺️♥️.....',
       rating: 5,
-      avatar: media3,
     },
     {
       name: 'Abdul Jabbar.',
@@ -102,7 +114,6 @@ const Testimonials = () => {
       content:
         'This app is very useful to children. The stories are very funny and develop their moral and mental creativity.',
       rating: 5,
-      avatar: media4,
     },
     {
       name: 'Haniya_ag.',
@@ -110,7 +121,6 @@ const Testimonials = () => {
       content:
         'mann!! this is all I need. this triggered my childhood memories of reading malarvaadi. and as a poocha police and pattaalam paili fan... Im done 😭🤯',
       rating: 5,
-      avatar: media5,
     },
   ];
 
@@ -155,17 +165,17 @@ const Testimonials = () => {
           style={{ transitionDelay: '200ms', transitionTimingFunction: 'var(--ease-expo-out)' }}
         >
           {/* Desktop View - All Cards */}
-          <div className="hidden md:grid md:grid-cols-3 gap-6">
+          <div className="hidden md:grid md:grid-cols-3 gap-6 items-stretch">
             {testimonials.map((testimonial, index) => (
               <div
                 key={testimonial.name}
-                className={`transition-all duration-500 ${
+                className={`transition-all duration-500 flex ${
                   headerVisible
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-12'
                 }`}
                 style={{
-                  transitionDelay: `${400 + index * 150}ms`,
+                  transitionDelay: `${200 + index * 100}ms`,
                   transitionTimingFunction: 'var(--ease-expo-out)',
                 }}
               >
