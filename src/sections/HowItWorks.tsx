@@ -73,14 +73,24 @@ const Step = ({ number, icon, title, description, delay, isLeft }: StepProps) =>
           {/* Store Buttons for Step 1 */}
           {number === 1 && (
             <div className="flex flex-col sm:flex-row gap-3 mt-6">
-              <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition-colors duration-300">
+              <a
+                href="https://apps.apple.com/in/app/zai-toon-kids/id6737912105"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition-colors duration-300"
+              >
                 <Apple className="w-5 h-5 text-white" />
                 <span className="text-sm text-white">App Store</span>
-              </button>
-              <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition-colors duration-300">
+              </a>
+              <a
+                href="https://play.google.com/store/apps/details?id=co.d4dx.zaitoon&pcampaignid=web_share"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition-colors duration-300"
+              >
                 <Play className="w-5 h-5 text-white" />
                 <span className="text-sm text-white">Play Store</span>
-              </button>
+              </a>
             </div>
           )}
         </div>
